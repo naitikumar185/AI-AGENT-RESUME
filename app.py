@@ -22,10 +22,12 @@ st.title("AI RESUME MAKER")
 st.write("""This app helps user to build customized Professional Resume with resume with latest job apply links""")
 
 st.image("bg.png")
+st.sidebar.title("Fill Important Details")
+st.sidebar.image("bg.png")
 
-GOOGLE_API_KEY = "AQ.Ab8RN6Ki-u5oE5LBurw9Oi3tFKYJYjbJ9K8IFGkOxQ598n_2Gg"
-GROQ_API_KEY = "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"
-TAVILY_API_KEY = "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"
+GOOGLE_API_KEY = st.sidebar.text_input("Gemini-API",type="password")
+GROQ_API_KEY = st.sidebar.text_input("Groqi-API",type="password")
+TAVILY_API_KEY = "st.sidebar.text_input("Tavily-API",type="password")
 
 
 model = ChatGoogleGenerativeAI(
