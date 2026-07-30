@@ -55,6 +55,11 @@ profile=st.sidebar.multiselect(
     options=profile_op
 )
 
+# =================================GET USER INFO =====================================
+
+st.markdown("""#GET USER INFO""")
+user_info = st.text_area(""" Write your resume description:""")
+
 model = ChatGoogleGenerativeAI(
     model = 'gemini-3.5-flash-lite',
     google_api_key = GOOGLE_API_KEY
@@ -139,5 +144,14 @@ Show atleast Top 10-20 results with direct apply link"""
   code = response['messages'][-1].content[-1]['text']
 
   return code
+
+if st.button("generate resume"):
+    with spinner("agent running"):
+        code= main_agent(agent,user_info)
+        st.html(code,width="stretch",unsafe_allow_javascript=True)
+        st.divider()
+        job_code=get_jobs(agent,location,profile)
+        st.html(job_code,width="stretch",unsafe_allow_javascript=True)
+        
 #code = get_jobs(agent)
 #display(HTML(code))
