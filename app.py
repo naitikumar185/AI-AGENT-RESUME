@@ -14,6 +14,16 @@ from PIL import Image
 import pandas as pd
 import numpy as np
 
+# To show web app:complete page layout
+st.set_page_config(layout="wide")
+
+#to give title 
+st.title("AI RESUME MAKER")
+
+st.write("""This app helps user to build customized Professional Resume with resume with latest job apply links""")
+
+st.image("bg.png")
+
 GOOGLE_API_KEY = "AQ.Ab8RN6Ki-u5oE5LBurw9Oi3tFKYJYjbJ9K8IFGkOxQ598n_2Gg"
 GROQ_API_KEY = "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"
 TAVILY_API_KEY = "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"
@@ -23,8 +33,8 @@ model = ChatGoogleGenerativeAI(
     model = 'gemini-3.5-flash-lite',
     google_api_key = GOOGLE_API_KEY
 )
-response =  model.invoke("Hello Buddy!")
-response.content[-1]['text']
+# response =  model.invoke("Hello Buddy!")
+# response.content[-1]['text']
 
 def search_latest_news_jobs(query):
   """This function helps to fetch latest news or jobs related article using tavily"""
@@ -39,7 +49,7 @@ agent = create_agent(
     model = model,
     tools =  [search_latest_news_jobs])
 
-agent
+# agent
 
 def main_agent(agent,query):
   """This is main agent , or leader agent orchestrate sub agents"""
@@ -75,10 +85,10 @@ def main_agent(agent,query):
 
   return code
 
-  from IPython.display import display, HTML
+  #from IPython.display import display, HTML
 
-code = main_agent(agent, "Naitik Kumar , GEN AI EXPERT")
-display(HTML(code))
+#code = main_agent(agent, "Naitik Kumar , GEN AI EXPERT")
+#display(HTML(code))
 
 
 # Fetch Latest Domain related Jobs using Tavily
@@ -103,5 +113,5 @@ Show atleast Top 10-20 results with direct apply link"""
   code = response['messages'][-1].content[-1]['text']
 
   return code
-code = get_jobs(agent)
-display(HTML(code))
+#code = get_jobs(agent)
+#display(HTML(code))
