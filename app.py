@@ -146,7 +146,7 @@ Show atleast Top 10-20 results with direct apply link"""
   return code
 
 if st.button("generate resume"):
-    with spinner("agent running"):
+    with st.spinner("agent running"):
         code= main_agent(agent,user_info)
         st.html(code,width="stretch",unsafe_allow_javascript=True)
         st.divider()
